@@ -292,7 +292,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre00, Nv00, Ps00, pokemon00)
         elegir.disableProperty().set(false)
-    }
+    }/*
     @FXML
     fun elegirPulsado() {
         try {
@@ -323,5 +323,5 @@ class ElegirPokemonController {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-    }
+    }*/
 }
