@@ -41,7 +41,7 @@ class BatallaController {
     @FXML
     private lateinit var BoxJugar: BorderPane
 
-fun InicioBatalla(Pokemon){
+//fun InicioBatalla(Pokemon){
 
 }
 

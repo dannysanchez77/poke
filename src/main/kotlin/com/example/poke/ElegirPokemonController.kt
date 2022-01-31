@@ -17,99 +17,135 @@ import java.io.File
 import java.io.IOException
 
 class ElegirPokemonController {
-    var Pokemon pokemonElegido
+
     private var listaPokemon = CargarPokemon.crearListaPokemon()
 
     @FXML
     private lateinit var fondo: ImageView
+
     @FXML
     private lateinit var pokemon00: BorderPane
+
     @FXML
     private lateinit var pokemon10: BorderPane
+
     @FXML
     private lateinit var pokemon20: BorderPane
+
     @FXML
     private lateinit var pokemon01: BorderPane
+
     @FXML
     private lateinit var pokemon11: BorderPane
+
     @FXML
     private lateinit var pokemon21: BorderPane
 
     @FXML
     private lateinit var Nombre00: Label
+
     @FXML
     private lateinit var Nombre10: Label
+
     @FXML
     private lateinit var Nombre20: Label
+
     @FXML
     private lateinit var Nombre01: Label
+
     @FXML
     private lateinit var Nombre11: Label
+
     @FXML
     private lateinit var Nombre21: Label
 
     @FXML
     private lateinit var Nv00: Label
+
     @FXML
     private lateinit var Nv10: Label
+
     @FXML
     private lateinit var Nv20: Label
+
     @FXML
     private lateinit var Nv01: Label
+
     @FXML
     private lateinit var Nv11: Label
+
     @FXML
     private lateinit var Nv21: Label
 
     @FXML
     private lateinit var foto00: ImageView
+
     @FXML
     private lateinit var foto10: ImageView
+
     @FXML
     private lateinit var foto20: ImageView
+
     @FXML
     private lateinit var foto01: ImageView
+
     @FXML
     private lateinit var foto11: ImageView
+
     @FXML
     private lateinit var foto21: ImageView
 
     @FXML
     private lateinit var genero00: ImageView
+
     @FXML
     private lateinit var genero10: ImageView
+
     @FXML
     private lateinit var genero20: ImageView
+
     @FXML
     private lateinit var genero01: ImageView
+
     @FXML
     private lateinit var genero11: ImageView
+
     @FXML
     private lateinit var genero21: ImageView
 
     @FXML
     private lateinit var vida00: ProgressBar
+
     @FXML
     private lateinit var vida10: ProgressBar
+
     @FXML
     private lateinit var vida20: ProgressBar
+
     @FXML
     private lateinit var vida01: ProgressBar
+
     @FXML
     private lateinit var vida11: ProgressBar
+
     @FXML
     private lateinit var vida21: ProgressBar
 
     @FXML
     private lateinit var Ps00: Label
+
     @FXML
     private lateinit var Ps10: Label
+
     @FXML
     private lateinit var Ps20: Label
+
     @FXML
     private lateinit var Ps01: Label
+
     @FXML
     private lateinit var Ps11: Label
+
     @FXML
     private lateinit var Ps21: Label
 
@@ -202,21 +238,25 @@ class ElegirPokemonController {
         vida.progress = calcularBarraVida(poke)
         ps.text = poke.vidaActual.toString() + '/' + poke.vidaMaxima
     }
+
     // CARACTERISTICAS DEL FONDO DEL POKEMON ELEGIDO
     fun fondoPokeElegido(nombre: Label, Nv: Label, Ps: Label, pokemon: BorderPane) {
         val f = File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\1.png") // VARIABLE DEL FONDO
         nombre.style = nombre.style + "-fx-text-fill: #D4AC0D;" // CAMBIAR COLOR
         Nv.style = Nv.style + "-fx-text-fill: #D4AC0D;" // CAMBIAR COLOR
         Ps.style = Ps.style + "-fx-text-fill: #D4AC0D;" // CAMBIAR COLOR
-        pokemon.style = pokemon.style + "-fx-background-image: url(\"${f.toURI().toURL()}\")" // FONDO DEL CUADRO DEL POKEMON
+        pokemon.style =
+            pokemon.style + "-fx-background-image: url(\"${f.toURI().toURL()}\")" // FONDO DEL CUADRO DEL POKEMON
 
     }
+
     // CARACTERISCAS DEL FONDO DE LOS POKEMON NO ELEGIDOS
     fun fondoPokeNo(nombre: Label, Nv: Label, Ps: Label, pokemon: BorderPane) {
         nombre.style = nombre.style + "-fx-text-fill: white ;" //RESTABLECER COLOR
         Nv.style = Nv.style + "-fx-text-fill: white;"          //RESTABLECER COLOR
         Ps.style = Ps.style + "-fx-text-fill: white ;"         //RESTABLECER COLOR
-        pokemon.style = pokemon.style + "-fx-background-color: none;-fx-border-color: none;-fx-border-style:none;-fx-border-width:0;" //RESTABLECER FONDO
+        pokemon.style =
+            pokemon.style + "-fx-background-color: none;-fx-border-color: none;-fx-border-style:none;-fx-border-width:0;" //RESTABLECER FONDO
     }
 
     fun initialize() { // INICIALIZAR LOS POKEMON, EL FONDO Y DESABILITAR EL BOTON DE ELEGIR EL POKEMON
@@ -296,51 +336,21 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre00, Nv00, Ps00, pokemon00)
         elegir.disableProperty().set(false)
     }
-    /*companion object var stage2: Stage? =null
-    @FXML
-    fun elegirPulsado() {
-        stage2 = Stage()
-        val fxmlLoader = FXMLLoader(PokeApplication::class.java.getResource("escena2.fxml"))
-        val scene = Scene(fxmlLoader.load(), 700.0, 500.0)
-        stage2?.title = "Pokemon"
-        stage2?.scene = scene
-        stage2?.show()
-        try {
-            stage2 = Stage()
-            val loader = FXMLLoader(javaClass.getResource("interfaz2.fxml"))
-            val root = loader.load<AnchorPane>()
-            val scene = Scene(root, 700.0, 500.0)
-            stage2!!.scene = scene
-            stage2!!.show()
-            val v: BatallaController = loader.getController()
-            v.InicioBatalla(ElegirPokemonController)
-            v.enviarDatos(this)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
 
-    }*/
-    fun ElegirPulsado(){
-        if(stage==null) {
-            //var pokemonSeleccionado: CombatePokemon
+
+    var stage: Stage? = null
+    fun elegirPulsado() {
+        if (stage == null) {
             val stage = Stage()
-            val loader = FXMLLoader(PokeApplication::class.java.getResource("escena2.fxml"))
-            val scene = Scene(loader.load(), 610.0, 375.0)
+            val fxmlLoader = FXMLLoader(BatallaController::class.java.getResource("escena2.fxml"))
+            val scene = Scene(fxmlLoader.load(), 700.0, 500.0)
             stage.title = "Pokemon"
             stage.scene = scene
             stage.isResizable = false
             stage.show()
-            val controlador = loader.getController<BatallaController>()
-            var seleccionado: Pokemon = pokemonArray[0]
-            pokemonArray.forEachIndexed { index, pokemon ->
-                if (pokemon.bol) {
-                    seleccionado = pokemonArray[index]
+            val controlador = fxmlLoader.getController<BatallaController>()
+            var seleccionado: Pokemon = listaPokemon[0]
 
-
-                }
-            }
-            controlador.cargarPokemon(seleccionado)
-            controlador.enviarDatosMenuSeleccion(this)
-            //pokemonSeleccionado = CombatePokemon()
         }
     }
+}
