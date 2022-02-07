@@ -8,22 +8,36 @@ import java.awt.Label
 import java.io.File
 
 class BatallaController {
-    private var listaPokemonRival = CargarPokemonRival.crearListaPokemonRival()
 
+
+    // FONDO
     @FXML
     private lateinit var fondoBatalla: ImageView
+
+    // RIVAL
     @FXML
-    private lateinit var nombreRival: Label
+    private lateinit var NombreRival: Label
     @FXML
     private lateinit var NvRival: Label
     @FXML
     private lateinit var VidaActualRival: Label
     @FXML
-    private lateinit var nombreElegido: Label
+    private lateinit var BarraRival: ProgressBar
+    @FXML
+    private lateinit var FotoRival: ImageView
+
+    // ELEGIDO
+    @FXML
+    private lateinit var NombreElegido: Label
     @FXML
     private lateinit var NvElegido: Label
     @FXML
     private lateinit var VidaActualElegido: Label
+    @FXML
+    private lateinit var BarraElegido: ProgressBar
+    @FXML
+    private lateinit var FotoElegido: ImageView
+
     @FXML
     private lateinit var AtaqueSeguro: Label
     @FXML
@@ -41,60 +55,84 @@ class BatallaController {
     @FXML
     private lateinit var BoxJugar: BorderPane
 
-//fun InicioBatalla(Pokemon){
-
-}
-
-    data class PokemonRival(
-        var Nombre: String,
-        var Nv: Int,
-        var imagen: File,
-        var vidaActual: Int,
+    class PokemonElegido(
+        var NombreElegido: Label,
+        var NvElegido: Label,
+        var FotoElegido: ImageView,
+        var VidaActualElegido:Label ,
+        var BarraElegido: ProgressBar,
     )
+    class PokemonRival(
+        var NombreRival: Label,
+        var NvRival: Label,
+        var FotoRival: ImageView,
+        var VidaActualRival: Label,
+        var BarraRival: ProgressBar,
+    )
+    var pokeselec=Pokemon(
+        "Venusaur",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venusaur.gif"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venu_espalda.gif"),
+    )
+    fun cargarPokemonElegido(pokemon: Pokemon){
+        pokemon.boolean=false
+        pokeselec = pokemon
+
+        val pokemonElegidoBatalla = PokemonElegido(NombreElegido,NvElegido,FotoElegido,VidaActualElegido,BarraElegido)
+        initializeElegido(pokemonElegidoBatalla)
+    }
+fun initializeFondo(){
+    fondoBatalla.image = Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondoBatalla.jpg").toURI().toString())
 }
+    fun initializeElegido(pokemonElegidoBatalla: PokemonElegido) {
+        val imagenPokeElegido= pokeselec.imagenCombate
+        pokemonElegidoBatalla.FotoElegido.image=Image(imagenPokeElegido.toString())
+        pokemonElegidoBatalla.NombreElegido.text=pokeselec.Nombre
+        pokemonElegidoBatalla.VidaActualElegido.text="PS"
+        pokemonElegidoBatalla.NvElegido.text="Nvl "+pokeselec.Nv
+        pokemonElegidoBatalla.BarraElegido.progress=pokeselec.vidaActual.toDouble()/pokeselec.vidaMaxima
+        if(pokemonElegidoBatalla.BarraElegido.progress>0.5)
+            pokemonElegidoBatalla.BarraElegido.style="-fx-accent: #20ee31"
+        else
+            if(pokemonElegidoBatalla.BarraElegido.progress>0.25)
+                pokemonElegidoBatalla.BarraElegido.style="-fx-accent: #ff8929"
+            else
+                if (pokemonElegidoBatalla.BarraElegido.progress<0.25)
+                    pokemonElegidoBatalla.BarraElegido.style="-fx-accent:red"
+                else
+                    if (pokemonElegidoBatalla.BarraElegido.progress<0.5)
+                        pokemonElegidoBatalla.BarraElegido.style="-fx-accent:#ff8929"
+    }
+    fun cargarPokemonRival(pokemon: ElegirPokemonController){
+        val pokeRival = pokemon
 
-class CargarPokemonRival {
-    companion object {
-        fun crearListaPokemonRival(): MutableList<BatallaController.PokemonRival> {
-            val blastoise = BatallaController.PokemonRival(
-                "Blastoise",
-                70,
-                File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\blasto.gif"),
-                200,
-            )
-            val charizard = BatallaController.PokemonRival(
-                "Charizard",
-                70,
-                File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\charizard.gif"),
-                200,
-            )
-            val incineroar = BatallaController.PokemonRival(
-                "Incineroar",
-                70,
-                File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\incineroar.gif"),
-                200,
-            )
-            val archeops = BatallaController.PokemonRival(
-                "Archeops",
-                70,
-                File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\archeops.gif"),
-                200,
-            )
-
-            return mutableListOf(blastoise, charizard,incineroar, archeops)
-        }
+        val pokemonRival = PokemonRival(NombreRival ,NvRival,FotoRival,VidaActualRival,BarraRival)
+        initializeRival(pokemonRival)
+    }
+    fun initializeRival(pokemonRivalBatalla: PokemonRival) {
+        val imagenPokeRival= pokeselec.imagenCombate
+        pokemonRivalBatalla.FotoRival.image=Image(imagenPokeRival.toString())
+        pokemonRivalBatalla.NombreRival.text=pokeselec.Nombre
+        pokemonRivalBatalla.VidaActualRival.text="PS"
+        pokemonRivalBatalla.NvRival.text="Nvl "+pokeselec.Nv
+        pokemonRivalBatalla.BarraRival.progress=pokeselec.vidaActual.toDouble()/pokeselec.vidaMaxima
+        if(pokemonRivalBatalla.BarraRival.progress>0.5)
+            pokemonRivalBatalla.BarraRival.style="-fx-accent: #20ee31"
+        else
+            if(pokemonRivalBatalla.BarraRival.progress>0.25)
+                pokemonRivalBatalla.BarraRival.style="-fx-accent: #ff8929"
+            else
+                if (pokemonRivalBatalla.BarraRival.progress<0.25)
+                    pokemonRivalBatalla.BarraRival.style="-fx-accent:red"
+                else
+                    if (pokemonRivalBatalla.BarraRival.progress<0.5)
+                        pokemonRivalBatalla.BarraRival.style="-fx-accent:#ff8929"
     }
 }
-/*fun configurarPokeRival(
-    nombre: Label,    // VARIABLE DEL NOMBRE DEL POKEMON
-    nivel: Label,     // VARIABLE DEL NIVEL DEL POKEMON
-    pokemonRival: ImageView,// VARIABLE DE LA IMAGEN DEL POKEMON
-    vida: ProgressBar,// VARIABLE DE LA PROGRESS BAR DEL POKEMON
-) { // ASIGNACION DE VARIABLES
-    nombre.text = BatallaController.PokemonRival.Nombre
-    nivel.text = "Nv " + PokemonRival.Nv
-    pokemonRival.image = Image(pokemonRival.imagen.toURI().toString())
-    vida.progress = calcularBarraVida(poke)
-    ps.text = poke.vidaActual.toString() + '/' + poke.vidaMaxima
 
-*/
+
+
+

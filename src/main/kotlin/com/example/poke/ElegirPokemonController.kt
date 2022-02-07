@@ -8,7 +8,6 @@ import javafx.scene.control.Label
 import javafx.scene.control.ProgressBar
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
-import javafx.scene.layout.AnchorPane
 import javafx.scene.layout.BorderPane
 import javafx.stage.Stage
 
@@ -18,7 +17,6 @@ import java.io.IOException
 
 class ElegirPokemonController {
 
-    private var listaPokemon = CargarPokemon.crearListaPokemon()
 
     @FXML
     private lateinit var fondo: ImageView
@@ -96,24 +94,6 @@ class ElegirPokemonController {
     private lateinit var foto21: ImageView
 
     @FXML
-    private lateinit var genero00: ImageView
-
-    @FXML
-    private lateinit var genero10: ImageView
-
-    @FXML
-    private lateinit var genero20: ImageView
-
-    @FXML
-    private lateinit var genero01: ImageView
-
-    @FXML
-    private lateinit var genero11: ImageView
-
-    @FXML
-    private lateinit var genero21: ImageView
-
-    @FXML
     private lateinit var vida00: ProgressBar
 
     @FXML
@@ -152,70 +132,9 @@ class ElegirPokemonController {
     @FXML
     private lateinit var elegir: Button
 
-    data class Pokemon(
-        var Nombre: String,
-        var Nv: Int,
-        var imagen: File,
-        var genero: File,
-        var vidaActual: Int,
-        var vidaMaxima: Int
-    )
 
-    class CargarPokemon {
-        companion object {
-            fun crearListaPokemon(): MutableList<Pokemon> {
-                val groudon = Pokemon(
-                    "Groudon",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\groudon.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                val venusaur = Pokemon(
-                    "Venusaur",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venusaur.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                val torkoal = Pokemon(
-                    "Torkoal",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\torkoal.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                val electivire = Pokemon(
-                    "Electivire",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\electivire.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                val sharpedo = Pokemon(
-                    "Sharpedo",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\sharpedo.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                val swampert = Pokemon(
-                    "Swampert",
-                    70,
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\swampert.gif"),
-                    File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
-                    200,
-                    200
-                )
-                return mutableListOf(groudon, venusaur, torkoal, electivire, sharpedo, swampert)
-            }
-        }
-    }
+
+
 
     private fun calcularBarraVida(poke: Pokemon): Double {
         return poke.vidaActual.toDouble() / poke.vidaMaxima
@@ -225,7 +144,6 @@ class ElegirPokemonController {
         nombre: Label,    // VARIABLE DEL NOMBRE DEL POKEMON
         nivel: Label,     // VARIABLE DEL NIVEL DEL POKEMON
         imagen: ImageView,// VARIABLE DE LA IMAGEN DEL POKEMON
-        genero: ImageView,// VARIABLE DE LA IMAGEN DEL GENERO DEL POKEMON
         vida: ProgressBar,// VARIABLE DE LA PROGRESS BAR DEL POKEMON
         ps: Label,        // VARIABLE VIDA DEL POKEMON
         poke: Pokemon     // VARIABLE CUADRO DEL POKEMON
@@ -234,7 +152,6 @@ class ElegirPokemonController {
         nombre.text = poke.Nombre
         nivel.text = "Nv " + poke.Nv
         imagen.image = Image(poke.imagen.toURI().toString())
-        genero.image = Image(poke.genero.toURI().toString())
         vida.progress = calcularBarraVida(poke)
         ps.text = poke.vidaActual.toString() + '/' + poke.vidaMaxima
     }
@@ -255,19 +172,18 @@ class ElegirPokemonController {
         nombre.style = nombre.style + "-fx-text-fill: white ;" //RESTABLECER COLOR
         Nv.style = Nv.style + "-fx-text-fill: white;"          //RESTABLECER COLOR
         Ps.style = Ps.style + "-fx-text-fill: white ;"         //RESTABLECER COLOR
-        pokemon.style =
-            pokemon.style + "-fx-background-color: none;-fx-border-color: none;-fx-border-style:none;-fx-border-width:0;" //RESTABLECER FONDO
+        pokemon.style = pokemon.style + "-fx-background-color: none;-fx-border-color: none;-fx-border-style:none;-fx-border-width:0;" //RESTABLECER FONDO
     }
 
     fun initialize() { // INICIALIZAR LOS POKEMON, EL FONDO Y DESABILITAR EL BOTON DE ELEGIR EL POKEMON
         elegir.disableProperty().set(true)
         fondo.image = Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondo.jpg").toURI().toString())
-        configurarPoke(Nombre00, Nv00, foto00, genero00, vida00, Ps00, listaPokemon[0])
-        configurarPoke(Nombre10, Nv10, foto10, genero10, vida10, Ps10, listaPokemon[1])
-        configurarPoke(Nombre20, Nv20, foto20, genero20, vida20, Ps20, listaPokemon[2])
-        configurarPoke(Nombre01, Nv01, foto01, genero01, vida01, Ps01, listaPokemon[3])
-        configurarPoke(Nombre11, Nv11, foto11, genero11, vida11, Ps11, listaPokemon[4])
-        configurarPoke(Nombre21, Nv21, foto21, genero21, vida21, Ps21, listaPokemon[5])
+        configurarPoke(Nombre00, Nv00, foto00,  vida00, Ps00, pokeElegido[0])
+        configurarPoke(Nombre10, Nv10, foto10,  vida10, Ps10, pokeElegido[1])
+        configurarPoke(Nombre20, Nv20, foto20,  vida20, Ps20, pokeElegido[2])
+        configurarPoke(Nombre01, Nv01, foto01,  vida01, Ps01, pokeElegido[3])
+        configurarPoke(Nombre11, Nv11, foto11,  vida11, Ps11, pokeElegido[4])
+        configurarPoke(Nombre21, Nv21, foto21,  vida21, Ps21, pokeElegido[5])
     }
 
     @FXML
@@ -279,6 +195,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre21, Nv21, Ps21, pokemon21)
         elegir.disableProperty().set(false)
+        pokeElegido[0].boolean=true
 
     }
 
@@ -291,6 +208,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre21, Nv21, Ps21, pokemon21)
         elegir.disableProperty().set(false)
+        pokeElegido[1].boolean=true
     }
 
     @FXML
@@ -302,6 +220,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre21, Nv21, Ps21, pokemon21)
         elegir.disableProperty().set(false)
+        pokeElegido[2].boolean=true
     }
 
     @FXML
@@ -313,6 +232,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre21, Nv21, Ps21, pokemon21)
         elegir.disableProperty().set(false)
+        pokeElegido[3].boolean=true
     }
 
     @FXML
@@ -324,6 +244,7 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre00, Nv00, Ps00, pokemon00)
         fondoPokeNo(Nombre21, Nv21, Ps21, pokemon21)
         elegir.disableProperty().set(false)
+        pokeElegido[4].boolean=true
     }
 
     @FXML
@@ -335,22 +256,35 @@ class ElegirPokemonController {
         fondoPokeNo(Nombre11, Nv11, Ps11, pokemon11)
         fondoPokeNo(Nombre00, Nv00, Ps00, pokemon00)
         elegir.disableProperty().set(false)
+        pokeElegido[5].boolean=true
     }
 
 
     var stage: Stage? = null
-    fun elegirPulsado() {
-        if (stage == null) {
-            val stage = Stage()
-            val fxmlLoader = FXMLLoader(BatallaController::class.java.getResource("escena2.fxml"))
-            val scene = Scene(fxmlLoader.load(), 700.0, 500.0)
-            stage.title = "Pokemon"
-            stage.scene = scene
-            stage.isResizable = false
-            stage.show()
-            val controlador = fxmlLoader.getController<BatallaController>()
-            var seleccionado: Pokemon = listaPokemon[0]
-
+    fun elegirPulsado(){
+        try{
+            if(stage==null) {
+                var pokemonSeleccionado:BatallaController
+                val stage = Stage()
+                val loader = FXMLLoader(BatallaController::class.java.getResource("escena2.fxml"))
+                val scene = Scene(loader.load(), 700.0, 500.0)
+                stage.title = "Pokemon"
+                stage.scene = scene
+                stage.isResizable = false
+                stage.show()
+                val controlador = loader.getController<BatallaController>()
+                var elegido: Pokemon
+                pokeElegido.forEachIndexed { index, pokemon ->
+                    if (pokemon.boolean) {
+                        elegido = pokeElegido[index]
+                        controlador.cargarPokemonElegido(elegido)
+                        controlador.cargarPokemonRival(this)
+                        pokemonSeleccionado = BatallaController()
+                    }
+                }
+            }
+        }catch (e: IOException){
+            e.printStackTrace()
         }
     }
 }
