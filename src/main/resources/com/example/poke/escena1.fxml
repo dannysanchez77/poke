@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -18,15 +19,15 @@
    <children>
       <ImageView fx:id="fondo" fitHeight="500.0" fitWidth="700.0" pickOnBounds="true" />
       <GridPane prefHeight="450.0" prefWidth="700.0">
-        <columnConstraints>
+         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" />
-          <ColumnConstraints hgrow="SOMETIMES" />
-          <ColumnConstraints hgrow="SOMETIMES" />
-        </columnConstraints>
-        <rowConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+         </columnConstraints>
+         <rowConstraints>
             <RowConstraints vgrow="SOMETIMES" />
-          <RowConstraints vgrow="SOMETIMES" />
-        </rowConstraints>
+            <RowConstraints vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
             <BorderPane fx:id="pokemon00" onMouseClicked="#poke00">
                <center>

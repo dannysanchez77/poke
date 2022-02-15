@@ -24,7 +24,7 @@
                <children>
                   <BorderPane fx:id="BoxAtaques" prefHeight="200.0" prefWidth="484.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
                      <center>
-                        <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <HBox fx:id="boxAtaques" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
                               <VBox prefHeight="190.0" prefWidth="200.0">
                                  <children>
