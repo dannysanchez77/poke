@@ -8,7 +8,9 @@ class Pokemon(var Nombre: String,
               var imagen: File,
               var genero: File,
               var vidaActual: Int,
-              var vidaMaxima: Int){
+              var vidaMaxima: Int,
+              var imagenEspalda: File,){
+
     fun ataqueSeguro(pokemon: Pokemon){
         pokemon.vidaActual-=20
 

@@ -28,12 +28,12 @@
                            <children>
                               <VBox prefHeight="190.0" prefWidth="200.0">
                                  <children>
-                                    <Label fx:id="AtaqueSeguro" alignment="CENTER" onMouseClicked="#AtaqueSeguroClicked" onMouseEntered="#AtaqueSeguroEntered" onMouseExited="#AtaqueSeguroExited" prefHeight="95.0" prefWidth="200.0" text="ATAQUE SEGURO" textAlignment="CENTER" textFill="GREEN">
+                                    <Label fx:id="ataqueSeguro" alignment="CENTER" onMouseClicked="#ataqueSeguroClicked" onMouseEntered="#ataqueSeguroEntered" onMouseExited="#ataqueSeguroExited" prefHeight="95.0" prefWidth="200.0" text="ATAQUE SEGURO" textAlignment="CENTER" textFill="GREEN">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="Curar" alignment="CENTER" onMouseClicked="#CurarClicked" onMouseEntered="#CurarEntered" onMouseExited="#CurarExited" prefHeight="95.0" prefWidth="200.0" text="CURAR" textFill="#5d00ff">
+                                    <Label fx:id="curar" alignment="CENTER" onMouseClicked="#curarClicked" onMouseEntered="#curarEntered" onMouseExited="#curarExited" prefHeight="95.0" prefWidth="200.0" text="CURAR" textFill="#5d00ff">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -42,12 +42,12 @@
                               </VBox>
                               <VBox prefHeight="190.0" prefWidth="200.0">
                                  <children>
-                                    <Label fx:id="AtaqueMuyArri" alignment="CENTER" onMouseClicked="#AtaqueMuyArriClicked" onMouseEntered="#AtaqueMuyArriEntered" onMouseExited="#AtaqueMuyArriExited" prefHeight="95.0" prefWidth="226.0" text="ATAQUE MUY ARRIESGADO" textAlignment="CENTER" textFill="RED">
+                                    <Label fx:id="ataqueMuyArriesgado" alignment="CENTER" onMouseClicked="#ataqueMuyArriClicked" onMouseEntered="#ataqueMuyArriEntered" onMouseExited="#ataqueMuyArriExited" prefHeight="95.0" prefWidth="226.0" text="ATAQUE MUY ARRIESGADO" textAlignment="CENTER" textFill="RED">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
                                     </Label>
-                                    <Label fx:id="AtaqueArri" alignment="CENTER" onMouseClicked="#AtaqueArriClicked" onMouseEntered="#AtaqueArriEntered" onMouseExited="#AtaqueArriExited" prefHeight="95.0" prefWidth="200.0" text="ATAQUE ARRIESGADO" textFill="#ffb700">
+                                    <Label fx:id="ataqueArriesgado" alignment="CENTER" onMouseClicked="#ataqueArriClicked" onMouseEntered="#ataqueArriEntered" onMouseExited="#ataqueArriExited" prefHeight="95.0" prefWidth="200.0" text="ATAQUE ARRIESGADO" textFill="#ffb700">
                                        <font>
                                           <Font name="System Bold" size="14.0" />
                                        </font>
@@ -60,7 +60,7 @@
                   </BorderPane>
                   <BorderPane fx:id="BoxJugar" prefHeight="200.0" prefWidth="374.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
                      <right>
-                        <Label fx:id="Salir" alignment="CENTER" onMouseClicked="#SalirClicked" text="SALIR" textAlignment="CENTER" BorderPane.alignment="CENTER">
+                        <Label fx:id="salir" alignment="CENTER" onMouseClicked="#salirClicked" text="SALIR" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -70,7 +70,7 @@
                         </Label>
                      </right>
                      <left>
-                        <Label fx:id="Atacar" alignment="CENTER" onMouseClicked="#AtacarClicked" onMouseEntered="#AtacarEntered" onMouseExited="#AtacarExited" text="ATACAR" textAlignment="CENTER" textFill="RED" BorderPane.alignment="CENTER">
+                        <Label fx:id="atacar" alignment="CENTER" onMouseClicked="#atacarClicked" onMouseEntered="#atacarEntered" onMouseExited="#atacarExited" text="ATACAR" textAlignment="CENTER" textFill="RED" BorderPane.alignment="CENTER">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -87,6 +87,11 @@
          <bottom>
             <HBox alignment="TOP_RIGHT" prefWidth="300.0" style="-fx-effect: shadow;" BorderPane.alignment="BOTTOM_RIGHT">
                <children>
+                  <ImageView fx:id="generoRival" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../kotlin/com/example/poke/Pokemones/masculino.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="vidaActualRival" style="-fx-effect: dropshadow(one-pass-box, #524659, 11, 1, 3, 0);" text="PS" textFill="YELLOW">
                      <font>
                         <Font name="System Bold" size="17.0" />
@@ -112,15 +117,15 @@
          <top>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="NombreRival" prefHeight="20.0" prefWidth="130.0" text="nombre">
+                  <Label fx:id="nombreRival" prefHeight="20.0" prefWidth="177.0" text="nombre">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                      <padding>
-                        <Insets left="20.0" right="50.0" />
+                        <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="NvRival" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="146.0" text="nivel">
+                  <Label fx:id="nvRival" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="107.0" text="nivel">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -136,6 +141,11 @@
          <bottom>
             <HBox alignment="TOP_RIGHT" prefWidth="300.0" style="-fx-effect: shadow;" BorderPane.alignment="BOTTOM_RIGHT">
                <children>
+                  <ImageView fx:id="generoElegido" fitHeight="27.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../kotlin/com/example/poke/Pokemones/masculino.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="vidaActualElegido" style="-fx-effect: dropshadow(one-pass-box, #524659, 11, 1, 3, 0);" text="PS" textFill="YELLOW">
                      <font>
                         <Font name="System Bold" size="17.0" />
@@ -161,7 +171,7 @@
          <top>
             <HBox BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="NombreElegido" prefHeight="20.0" prefWidth="130.0" text="nombre">
+                  <Label fx:id="nombreElegido" prefHeight="20.0" prefWidth="182.0" text="nombre">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -169,7 +179,7 @@
                         <Insets left="20.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="NvElegido" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="146.0" text="nivel">
+                  <Label fx:id="nvElegido" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="108.0" text="nivel">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -181,12 +191,12 @@
             </HBox>
          </top>
       </BorderPane>
-      <ImageView fx:id="FotoRival" fitHeight="150.0" fitWidth="200.0" layoutX="401.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fotoRival" fitHeight="150.0" fitWidth="200.0" layoutX="401.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../kotlin/com/example/poke/Pokemones/incineroar.gif" />
          </image>
       </ImageView>
-      <ImageView fx:id="FotoElegido" fitHeight="150.0" fitWidth="200.0" layoutX="65.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fotoElegido" fitHeight="150.0" fitWidth="200.0" layoutX="65.0" layoutY="163.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../kotlin/com/example/poke/Pokemones/groudon_espalda.gif" />
          </image>

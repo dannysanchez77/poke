@@ -17,58 +17,55 @@ import java.io.IOException
 
 class ElegirPokemonController {
     var pokemonAmigo = ArrayList<Pokemon>()
-    var pokemonRival = ArrayList<Pokemon>()
     lateinit var elegirLuchador:Pokemon
 
 
-    val pokemonAmigo1 = Pokemon("Groudon",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\groudon.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
-    val pokemonAmigo2 = Pokemon("Venusaur",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venusaur.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
-    val pokemonAmigo3 = Pokemon("Torkoal",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\torkoal.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
-    val pokemonAmigo4 = Pokemon("Electivire",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\electivire.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
-    val pokemonAmigo5 = Pokemon("Sharpedo",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\sharpedo.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
-    val pokemonAmigo6 = Pokemon("Swampert",70, File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\swampert.gif"),
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),200,200)
+    val pokemonAmigo1 = Pokemon("Groudon",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\groudon.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\groudon_espalda.gif")
+    )
+    val pokemonAmigo2 = Pokemon("Venusaur",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venusaur.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\venu_espalda.gif"))
+    val pokemonAmigo3 = Pokemon("Torkoal",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\torkoal.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\torkoal_espalda.gif"))
+    val pokemonAmigo4 = Pokemon("Electivire",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\electivire.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\elecEspalda.gif"))
+    val pokemonAmigo5 = Pokemon("Sharpedo",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\sharpedo.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\sharpedo_espalda.gif"))
+    val pokemonAmigo6 = Pokemon("Swampert",
+        70,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\swampert.gif"),
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\masculino.png"),
+        200,
+        200,
+        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\swampert_espalda.gif"))
 
 
 
-    val pokemonRival1 = Pokemon(
-        "Blastoise",
-        70,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\blasto.gif"),
-        200,
-        200,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\blasto.gif")
-    )
-    val pokemonRival2 = Pokemon(
-        "Charizard",
-        70,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\charizard.gif"),
-        200,
-        200,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\charizard.gif")
-    )
-    val pokemonRival3 = Pokemon(
-        "Incineroar",
-        70,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\incineroar.gif"),
-        200,
-        200,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\incineroar.gif")
-
-    )
-    val pokemonRival4 = Pokemon(
-        "Archeops",
-        70,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\archeops.gif"),
-        200,
-        200,
-        File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\archeops.gif")
-    )
 
     @FXML private lateinit var fondo: ImageView
     @FXML private lateinit var pokemon00 : BorderPane
@@ -133,6 +130,7 @@ class ElegirPokemonController {
         genero.image= Image(poke.genero.toURI().toString())
         vida.progress = calcularBarraVida(poke)
         ps.text=poke.vidaActual.toString()+'/'+poke.vidaMaxima
+        imagen.image = Image(poke.imagen.toURI().toString())
     }
 
     fun fondoPokeElegido(nombre: Label,Nv:Label,Ps:Label,pokemon: BorderPane){
@@ -157,12 +155,6 @@ class ElegirPokemonController {
         pokemonAmigo.add(pokemonAmigo4)
         pokemonAmigo.add(pokemonAmigo5)
         pokemonAmigo.add(pokemonAmigo6)
-
-        pokeRival.add(pokeRival1)
-        pokeRival.add(pokeRival2)
-        pokeRival.add(pokeRival3)
-        pokeRival.add(pokeRival4)
-
 
         elegir.disableProperty().set(true)
         fondo.image= Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondo.jpg").toURI().toString())
@@ -235,35 +227,26 @@ class ElegirPokemonController {
         elegir.disableProperty().set(false)
         elegirLuchador=pokemonAmigo6
     }
-    // var stage: Stage? = null
+
+    var stage: Stage? = null
     @FXML fun elegirPulsado() {
         elegir.disableProperty().set(true)
 
+        try {
+            if (stage == null) {
 
-        /*
-                try{
-                    if(stage==null) {
+                val stage = Stage()
+                val loader = FXMLLoader(PokeApplication::class.java.getResource("escena2.fxml"))
+                val scene = Scene(loader.load(), 700.0, 500.0)
+                stage.title = "Pokemon"
+                stage.scene = scene
+                stage.isResizable = false
+                stage.show()
+                var controllerBatalla = loader.getController<BatallaController>()
+                controllerBatalla.traerPokemon(elegirLuchador)
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
 
-                        val stage = Stage()
-                        val loader = FXMLLoader(BatallaController::class.java.getResource("escena2.fxml"))
-                        val scene = Scene(loader.load(), 700.0, 500.0)
-                        stage.title = "Pokemon"
-                        stage.scene = scene
-                        stage.isResizable = false
-                        stage.show()
-                        val controlador = loader.getController<BatallaController>()
-                        var elegido: Pokemon
-                        //pokeElegido.forEachIndexed { index, pokemon ->
-                        //    if (pokemon.boolean) {
-                        //        elegido = pokeElegido[index]
-                        //        controlador.cargarPokemonElegido(elegido)
-                        //        controlador.cargarPokemonRival(this)
-                        //        pokemonSeleccionado = BatallaController()
-                        //    }
-                       // }
-                    }
-                }catch (e: IOException){
-                    e.printStackTrace()
-             */   }
-
-}
+    }}
