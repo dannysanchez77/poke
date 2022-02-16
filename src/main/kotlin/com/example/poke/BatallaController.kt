@@ -102,7 +102,7 @@ class BatallaController {
     }
     fun traerPokemon(elegirLuchador: Pokemon) {
         nombreElegido.text= elegirLuchador.Nombre
-        nvElegido.text ="Nv "+ elegirLuchador.Nv.toString()
+        nvElegido.text = elegirLuchador.Nv.toString()
         fotoElegido.image = Image(elegirLuchador.imagenEspalda.toURI().toString())
         generoElegido.image = Image(elegirLuchador.genero.toURI().toString())
         barraElegido.progress = calcularBarraVida(elegirLuchador)
