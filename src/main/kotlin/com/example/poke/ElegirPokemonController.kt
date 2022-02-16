@@ -149,6 +149,8 @@ class ElegirPokemonController {
     }
 
     fun initialize() {
+        fondo.image= Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondo.jpg").toURI().toString())
+
         pokemonAmigo.add(pokemonAmigo1)
         pokemonAmigo.add(pokemonAmigo2)
         pokemonAmigo.add(pokemonAmigo3)
@@ -157,7 +159,7 @@ class ElegirPokemonController {
         pokemonAmigo.add(pokemonAmigo6)
 
         elegir.disableProperty().set(true)
-        fondo.image= Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondo.jpg").toURI().toString())
+
         configurarPoke(Nombre00,Nv00,foto00,genero00,vida00,Ps00,pokemonAmigo[0])
         configurarPoke(Nombre10,Nv10,foto10,genero10,vida10,Ps10,pokemonAmigo[1])
         configurarPoke(Nombre20,Nv20,foto20,genero20,vida20,Ps20,pokemonAmigo[2])

@@ -1,15 +1,18 @@
 package com.example.poke
 import javafx.fxml.FXML
+import javafx.scene.control.Label
 import javafx.scene.control.ProgressBar
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
-import javafx.scene.control.Label
 import java.io.File
+import java.util.*
+
 class BatallaController {
     var posiblesPokemonRivales = ArrayList<Pokemon>()
     lateinit var pokemonRival : Pokemon
 
+    lateinit var elegirLuchador:Pokemon //he añadido esta xq no me lo cogia en el click
     val pokemonRival1 = Pokemon(
         "Blastoise",
         70,
@@ -77,6 +80,7 @@ class BatallaController {
     @FXML private lateinit var BoxJugar: BorderPane
 
     private fun calcularBarraVida(poke: Pokemon): Double{
+
         return poke.vidaActual.toDouble()/poke.vidaMaxima
     }
 
@@ -86,14 +90,14 @@ class BatallaController {
         posiblesPokemonRivales.add(pokemonRival2)
         posiblesPokemonRivales.add(pokemonRival3)
         posiblesPokemonRivales.add(pokemonRival4)
-
+        BoxAtaques.visibleProperty().set(false)
 
         fondoBatalla.image= Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondoBatalla.png").toURI().toString())
 
 
         pokemonRival = posiblesPokemonRivales.random()
         nombreRival.text=pokemonRival.Nombre
-        nvRival.text="Nv "+pokemonRival.Nv
+        nvRival.text= "Nv "+pokemonRival.Nv
         fotoRival.image = Image(pokemonRival.imagen.toURI().toString())
         generoRival.image= Image(pokemonRival.genero.toURI().toString())
         barraRival.progress = calcularBarraVida(pokemonRival)
@@ -102,14 +106,22 @@ class BatallaController {
     }
     fun traerPokemon(elegirLuchador: Pokemon) {
         nombreElegido.text= elegirLuchador.Nombre
-        nvElegido.text = elegirLuchador.Nv.toString()
+        nvElegido.text = "Nv "+elegirLuchador.Nv.toString()
         fotoElegido.image = Image(elegirLuchador.imagenEspalda.toURI().toString())
         generoElegido.image = Image(elegirLuchador.genero.toURI().toString())
-        barraElegido.progress = calcularBarraVida(elegirLuchador)
         vidaActualElegido.text = elegirLuchador.vidaActual.toString()
+        barraElegido.progress = calcularBarraVida(elegirLuchador)
     }
+
     @FXML private fun ataqueSeguroClicked(){
-        ataqueSeguro
+        if (pokemonRival.comprobarVivoRival() and elegirLuchador.comprobarVivoElegido()) {
+            pokemonRival.recibirAtaqueRival(1)
+        }
+        if (pokemonRival.comprobarVivoRival() and elegirLuchador.comprobarVivoElegido()) {
+            elegirLuchador.recibirAtaque(1)
+        }
+
+
     }
     @FXML private fun ataqueArriClicked(){
 
@@ -124,7 +136,8 @@ class BatallaController {
 
     }
     @FXML private fun atacarClicked(){
-
+        BoxJugar.visibleProperty().set(false)
+        BoxAtaques.visibleProperty().set(true)
     }
     @FXML private fun ataqueSeguroEntered(){
 
@@ -150,7 +163,6 @@ class BatallaController {
     @FXML private fun curarExited(){
 
     }
-
     @FXML private fun atacarEntered(){
 
     }
@@ -158,3 +170,5 @@ class BatallaController {
 
     }
 }
+
+

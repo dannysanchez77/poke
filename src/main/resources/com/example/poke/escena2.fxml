@@ -13,7 +13,7 @@
 
 <AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.poke.BatallaController">
    <children>
-      <ImageView fx:id="fondoBatalla" fitHeight="327.0" fitWidth="718.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="fondoBatalla" fitHeight="327.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../kotlin/com/example/poke/Pokemones/fondoBatalla.png" />
          </image>
@@ -58,7 +58,7 @@
                         </HBox>
                      </center>
                   </BorderPane>
-                  <BorderPane fx:id="BoxJugar" prefHeight="200.0" prefWidth="374.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
+                  <BorderPane fx:id="BoxJugar" prefHeight="216.0" prefWidth="256.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
                      <right>
                         <Label fx:id="salir" alignment="CENTER" onMouseClicked="#salirClicked" text="SALIR" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
@@ -81,6 +81,9 @@
                      </left>
                   </BorderPane>
                </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
             </HBox>
          </children></AnchorPane>
       <BorderPane layoutX="51.0" layoutY="66.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5; -fx-background-radius: 10;">
