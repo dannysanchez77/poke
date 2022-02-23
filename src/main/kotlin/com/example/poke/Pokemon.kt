@@ -11,19 +11,7 @@ class Pokemon(var Nombre: String,
               var vidaMaxima: Int,
               var imagenEspalda: File,){
 
-    fun ataqueSeguro(pokemon: Pokemon){
-        pokemon.vidaActual-=20
 
-    }
-    fun ataqueArriesgado(pokemon: Pokemon){
-        pokemon.vidaActual -= (Math.random() * 15+10).toInt()
-    }
-    fun ataqueMuyArriesgado(pokemon: Pokemon){
-        pokemon.vidaActual -= (Math.random() * 50).toInt()
-    }
-    fun curar(pokemon: Pokemon){
-        pokemon.vidaActual += (Math.random() *  50+25).toInt()
-    }
     fun comprobarVivoElegido():Boolean{
         var vivo = true
         if (vidaActual > 0)

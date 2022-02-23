@@ -118,7 +118,7 @@ class ElegirPokemonController {
     @FXML private lateinit var Ps21 : Label
 
     @FXML private lateinit var elegir : Button
-
+    @FXML private lateinit var Estadisticas : Button
 
     private fun calcularBarraVida(poke: Pokemon): Double{
         return poke.vidaActual.toDouble()/poke.vidaMaxima
@@ -251,4 +251,9 @@ class ElegirPokemonController {
             e.printStackTrace()
         }
 
-    }}
+    }
+    @FXML
+    fun estadisticasClick() {
+
+    }
+}

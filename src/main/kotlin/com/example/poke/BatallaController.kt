@@ -112,15 +112,25 @@ class BatallaController {
         vidaActualElegido.text = elegirLuchador.vidaActual.toString()
         barraElegido.progress = calcularBarraVida(elegirLuchador)
     }
+    fun ataqueSeguro(pokemon: Pokemon){
+        pokemon.vidaActual-=20
+
+    }
+    fun ataqueArriesgado(pokemon: Pokemon){
+        pokemon.vidaActual -= (Math.random() * 15+10).toInt()
+    }
+    fun ataqueMuyArriesgado(pokemon: Pokemon){
+        pokemon.vidaActual -= (Math.random() * 50).toInt()
+    }
+    fun curar(pokemon: Pokemon){
+        pokemon.vidaActual += (Math.random() *  50+25).toInt()
+    }
+
+
 
     @FXML private fun ataqueSeguroClicked(){
-        if (pokemonRival.comprobarVivoRival() and elegirLuchador.comprobarVivoElegido()) {
-            pokemonRival.recibirAtaqueRival(1)
-        }
-        if (pokemonRival.comprobarVivoRival() and elegirLuchador.comprobarVivoElegido()) {
-            elegirLuchador.recibirAtaque(1)
-        }
 
+    ataqueSeguro
 
     }
     @FXML private fun ataqueArriClicked(){
