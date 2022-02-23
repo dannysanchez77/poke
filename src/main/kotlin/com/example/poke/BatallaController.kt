@@ -1,15 +1,20 @@
 package com.example.poke
 import javafx.fxml.FXML
+import javafx.scene.control.Alert
+import javafx.scene.control.ButtonType
 import javafx.scene.control.Label
 import javafx.scene.control.ProgressBar
 import javafx.scene.image.Image
 import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
+import javafx.stage.Stage
 import java.io.File
 import java.util.*
+import kotlin.system.exitProcess
 
 
 class BatallaController {
+    var controlador = ElegirPokemonController()
     var posiblesPokemonRivales = ArrayList<Pokemon>()
     lateinit var pokemonRival : Pokemon
     lateinit var miLuchador : Pokemon
@@ -80,6 +85,7 @@ class BatallaController {
     @FXML private lateinit var BoxAtaques: BorderPane
     @FXML private lateinit var BoxJugar: BorderPane
 
+
     private fun calcularBarraVida(poke: Pokemon): Double{
 
         return poke.vidaActual.toDouble()/poke.vidaMaxima
@@ -113,6 +119,7 @@ class BatallaController {
         vidaActualElegido.text = "PS"
         barraElegido.progress = calcularBarraVida(elegirLuchador)
         miLuchador= elegirLuchador
+
     }
 
     fun actualizarVida(){
@@ -124,44 +131,135 @@ class BatallaController {
     }
 
 
-    @FXML private fun ataqueSeguroClicked(){
-        if (pokemonRival.estaVivo(miLuchador)){
-            miLuchador.ataqueSeguro(pokemonRival)}
+    fun alertaElegido(miLuchador: Pokemon) {
+        val alert = Alert(Alert.AlertType.CONFIRMATION)
+        alert.title = "Ha muerto"
+        alert.headerText = "El pokemon ${miLuchador.Nombre} ha muerto"
+        alert.contentText = "Elige que hacer"
+        val buttonTypeOne = ButtonType("Continuar")
+        val buttonTypeTwo = ButtonType("Salir")
+        alert.buttonTypes.setAll(buttonTypeOne, buttonTypeTwo)
+        val result = alert.showAndWait()
+        if (result.get() == buttonTypeOne) {
+            ((vidaActualElegido.scene.window)as Stage).close()
+            controlador.stage = null
+        } else if (result.get() == buttonTypeTwo) {
+            exitProcess(0)
+        } else {
+            exitProcess(0)
+        }
+    }
+    fun alertaRival(pokemonRival: Pokemon) {
+        val alert = Alert(Alert.AlertType.CONFIRMATION)
+        alert.title = "Ha muerto"
+        alert.headerText = "El pokemon ${pokemonRival.Nombre} ha muerto"
+        alert.contentText = "Elige que hacer"
 
+        val buttonTypeOne = ButtonType("Continuar")
+        val buttonTypeTwo = ButtonType("Salir")
+        alert.buttonTypes.setAll(buttonTypeOne, buttonTypeTwo)
+        val result = alert.showAndWait()
+        if (result.get() == buttonTypeOne) {
+            ((vidaActualElegido.scene.window)as Stage).close()
+            controlador.stage = null
+        } else if (result.get() == buttonTypeTwo) {
+            exitProcess(0)
+        } else {
+            exitProcess(0)
+        }
+    }
+
+    @FXML private fun ataqueSeguroClicked(){
+        actualizarVida()
+        if (pokemonRival.estaVivo(miLuchador)){
+            miLuchador.ataqueSeguro(pokemonRival)
+            actualizarVida()
+            controlador.actualizarDatos()
+        }
+        else {
+            alertaElegido(miLuchador)
+        }
         if (miLuchador.estaVivo(pokemonRival)){
             pokemonRival.ataqueSeguro(miLuchador)
+            actualizarVida()
+            controlador.actualizarDatos()
         }
+        else{
+            alertaRival(pokemonRival)
+        }
+        if (!miLuchador.estaVivo(pokemonRival))
+            alertaRival(pokemonRival)
+
+        if (!pokemonRival.estaVivo(miLuchador))
+            alertaElegido(miLuchador)
+
         actualizarVida()
         psRivalSale()
         psElegidoSale()
+
     }
     @FXML private fun ataqueArriClicked(){
+        actualizarVida()
         if (pokemonRival.estaVivo(miLuchador)){
-            miLuchador.ataqueArriesgado(pokemonRival)}
+            miLuchador.ataqueArriesgado(pokemonRival)
 
+            actualizarVida()
+            controlador.actualizarDatos()}
+
+        else {
+            alertaElegido(miLuchador)
+        }
         if (miLuchador.estaVivo(pokemonRival)){
-            pokemonRival.ataqueArriesgado(miLuchador)}
+            pokemonRival.ataqueArriesgado(miLuchador)
+            actualizarVida()
+            controlador.actualizarDatos()
+        }
+        else{
+            alertaRival(pokemonRival)
+        }
+        if (!miLuchador.estaVivo(pokemonRival))
+            alertaRival(pokemonRival)
+
+        if (!pokemonRival.estaVivo(miLuchador))
+            alertaElegido(miLuchador)
 
         actualizarVida()
         psRivalSale()
         psElegidoSale()
+
     }
     @FXML private fun ataqueMuyArriClicked(){
+        actualizarVida()
         if (pokemonRival.estaVivo(miLuchador)){
-            miLuchador.ataqueMuyArriesgado(pokemonRival)}
-
+            miLuchador.ataqueMuyArriesgado(pokemonRival)
+            actualizarVida()
+            controlador.actualizarDatos()}
+        else {
+            alertaElegido(miLuchador)
+        }
         if (miLuchador.estaVivo(pokemonRival)){
-            pokemonRival.ataqueMuyArriesgado(miLuchador)}
+            pokemonRival.ataqueMuyArriesgado(miLuchador)
+            actualizarVida()
+            controlador.actualizarDatos()
+        }
+        else{
+            alertaRival(pokemonRival)
+        }
+        if (!miLuchador.estaVivo(pokemonRival))
+            alertaRival(pokemonRival)
+
+        if (!pokemonRival.estaVivo(miLuchador))
+            alertaElegido(miLuchador)
+
         actualizarVida()
         psRivalSale()
         psElegidoSale()
+
     }
     @FXML private fun curarClicked(){
         miLuchador.curar(pokemonRival)
         pokemonRival.curar(miLuchador)
         actualizarVida()
-        psRivalSale()
-        psElegidoSale()
         psRivalSale()
         psElegidoSale()
     }
@@ -221,7 +319,7 @@ class BatallaController {
     }
 
     @FXML private fun  atacarEntra() {
-         atacar.style = atacar.style+" -fx-underline: true;"
+        atacar.style = atacar.style+" -fx-underline: true;"
     }
 
     @FXML private fun  atacarSale() {
@@ -233,8 +331,15 @@ class BatallaController {
     }
 
     @FXML private fun  curarSale() {
-         curar.style = curar.style+" -fx-underline: false;"
+        curar.style = curar.style+" -fx-underline: false;"
     }
+
+    fun enviarDatos( controlador: ElegirPokemonController){
+        this.controlador=controlador
+    }
+
+
+
 }
 
 
