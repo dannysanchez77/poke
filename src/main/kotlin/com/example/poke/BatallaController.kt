@@ -11,8 +11,8 @@ import java.util.*
 class BatallaController {
     var posiblesPokemonRivales = ArrayList<Pokemon>()
     lateinit var pokemonRival : Pokemon
+    lateinit var miLuchador : Pokemon
 
-    lateinit var elegirLuchador:Pokemon //he añadido esta xq no me lo cogia en el click
     val pokemonRival1 = Pokemon(
         "Blastoise",
         70,
@@ -111,36 +111,50 @@ class BatallaController {
         generoElegido.image = Image(elegirLuchador.genero.toURI().toString())
         vidaActualElegido.text = elegirLuchador.vidaActual.toString()
         barraElegido.progress = calcularBarraVida(elegirLuchador)
+        miLuchador= elegirLuchador
     }
-    fun ataqueSeguro(pokemon: Pokemon){
-        pokemon.vidaActual-=20
 
-    }
-    fun ataqueArriesgado(pokemon: Pokemon){
-        pokemon.vidaActual -= (Math.random() * 15+10).toInt()
-    }
-    fun ataqueMuyArriesgado(pokemon: Pokemon){
-        pokemon.vidaActual -= (Math.random() * 50).toInt()
-    }
-    fun curar(pokemon: Pokemon){
-        pokemon.vidaActual += (Math.random() *  50+25).toInt()
+    fun actualizarVida(){
+        vidaActualElegido.text = miLuchador.vidaActual.toString()
+        vidaActualRival.text = pokemonRival.vidaActual.toString()
+        barraElegido.progress = calcularBarraVida(miLuchador)
+        barraRival.progress = calcularBarraVida(pokemonRival)
+
     }
 
 
 
     @FXML private fun ataqueSeguroClicked(){
+        if (pokemonRival.estaVivo(miLuchador)){
+            miLuchador.ataqueSeguro(pokemonRival)}
 
-    ataqueSeguro
+        if (miLuchador.estaVivo(pokemonRival)){
+            pokemonRival.ataqueSeguro(miLuchador)
+            }
 
+        actualizarVida()
     }
     @FXML private fun ataqueArriClicked(){
+        if (pokemonRival.estaVivo(miLuchador)){
+            miLuchador.ataqueArriesgado(pokemonRival)}
 
+        if (miLuchador.estaVivo(pokemonRival)){
+            pokemonRival.ataqueArriesgado(miLuchador)}
+
+        actualizarVida()
     }
     @FXML private fun ataqueMuyArriClicked(){
+        if (pokemonRival.estaVivo(miLuchador)){
+            miLuchador.ataqueMuyArriesgado(pokemonRival)}
 
+        if (miLuchador.estaVivo(pokemonRival)){
+            pokemonRival.ataqueMuyArriesgado(miLuchador)}
+        actualizarVida()
     }
     @FXML private fun curarClicked(){
-
+        miLuchador.curar(pokemonRival)
+        pokemonRival.curar(miLuchador)
+        actualizarVida()
     }
     @FXML private fun salirClicked(){
 
