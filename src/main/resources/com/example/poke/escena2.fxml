@@ -18,13 +18,13 @@
             <Image url="@../../../../kotlin/com/example/poke/Pokemones/fondoBatalla.png" />
          </image>
       </ImageView>
-      <AnchorPane layoutY="326.0" prefHeight="202.0" prefWidth="700.0" style="-fx-background-color: #f7f8d8;">
+      <AnchorPane layoutY="326.0" prefHeight="173.0" prefWidth="700.0" style="-fx-background-color: #f7f8d8;">
          <children>
-            <HBox layoutY="1.0" prefHeight="200.0" prefWidth="700.0">
+            <HBox layoutY="1.0" prefHeight="173.0" prefWidth="700.0">
                <children>
                   <BorderPane fx:id="BoxAtaques" prefHeight="200.0" prefWidth="484.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
                      <center>
-                        <HBox fx:id="boxAtaques" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                        <HBox fx:id="boxAtaques" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
                               <VBox prefHeight="190.0" prefWidth="200.0">
                                  <children>
@@ -58,7 +58,7 @@
                         </HBox>
                      </center>
                   </BorderPane>
-                  <BorderPane fx:id="BoxJugar" prefHeight="216.0" prefWidth="256.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
+                  <BorderPane fx:id="BoxJugar" prefWidth="256.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5;">
                      <right>
                         <Label fx:id="salir" alignment="CENTER" onMouseClicked="#salirClicked" text="SALIR" textAlignment="CENTER" BorderPane.alignment="CENTER">
                            <font>
@@ -81,9 +81,6 @@
                      </left>
                   </BorderPane>
                </children>
-               <padding>
-                  <Insets bottom="5.0" />
-               </padding>
             </HBox>
          </children></AnchorPane>
       <BorderPane layoutX="51.0" layoutY="66.0" prefHeight="60.0" prefWidth="300.0" style="-fx-background-color: #f7f8d8; -fx-border-radius: 5; -fx-border-color: #696780; -fx-border-width: 5; -fx-background-radius: 10;">
@@ -128,7 +125,7 @@
                         <Insets left="20.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="nvRival" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="107.0" text="nivel">
+                  <Label fx:id="nvRival" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="100.0" text="nivel">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
@@ -182,7 +179,7 @@
                         <Insets left="20.0" right="50.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="nvElegido" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="108.0" text="nivel">
+                  <Label fx:id="nvElegido" alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="99.0" text="nivel">
                      <padding>
                         <Insets left="50.0" />
                      </padding>
