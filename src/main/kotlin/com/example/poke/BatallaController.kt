@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane
 import java.io.File
 import java.util.*
 
+
 class BatallaController {
     var posiblesPokemonRivales = ArrayList<Pokemon>()
     lateinit var pokemonRival : Pokemon
@@ -101,7 +102,7 @@ class BatallaController {
         fotoRival.image = Image(pokemonRival.imagen.toURI().toString())
         generoRival.image= Image(pokemonRival.genero.toURI().toString())
         barraRival.progress = calcularBarraVida(pokemonRival)
-        vidaActualRival.text = pokemonRival.vidaActual.toString()
+        vidaActualRival.text = "PS"
 
     }
     fun traerPokemon(elegirLuchador: Pokemon) {
@@ -109,7 +110,7 @@ class BatallaController {
         nvElegido.text = "Nv "+elegirLuchador.Nv.toString()
         fotoElegido.image = Image(elegirLuchador.imagenEspalda.toURI().toString())
         generoElegido.image = Image(elegirLuchador.genero.toURI().toString())
-        vidaActualElegido.text = elegirLuchador.vidaActual.toString()
+        vidaActualElegido.text = "PS"
         barraElegido.progress = calcularBarraVida(elegirLuchador)
         miLuchador= elegirLuchador
     }
@@ -123,16 +124,16 @@ class BatallaController {
     }
 
 
-
     @FXML private fun ataqueSeguroClicked(){
         if (pokemonRival.estaVivo(miLuchador)){
             miLuchador.ataqueSeguro(pokemonRival)}
 
         if (miLuchador.estaVivo(pokemonRival)){
             pokemonRival.ataqueSeguro(miLuchador)
-            }
-
+        }
         actualizarVida()
+        psRivalSale()
+        psElegidoSale()
     }
     @FXML private fun ataqueArriClicked(){
         if (pokemonRival.estaVivo(miLuchador)){
@@ -142,6 +143,8 @@ class BatallaController {
             pokemonRival.ataqueArriesgado(miLuchador)}
 
         actualizarVida()
+        psRivalSale()
+        psElegidoSale()
     }
     @FXML private fun ataqueMuyArriClicked(){
         if (pokemonRival.estaVivo(miLuchador)){
@@ -150,48 +153,87 @@ class BatallaController {
         if (miLuchador.estaVivo(pokemonRival)){
             pokemonRival.ataqueMuyArriesgado(miLuchador)}
         actualizarVida()
+        psRivalSale()
+        psElegidoSale()
     }
     @FXML private fun curarClicked(){
         miLuchador.curar(pokemonRival)
         pokemonRival.curar(miLuchador)
         actualizarVida()
+        psRivalSale()
+        psElegidoSale()
+        psRivalSale()
+        psElegidoSale()
     }
-    @FXML private fun salirClicked(){
 
-    }
     @FXML private fun atacarClicked(){
         BoxJugar.visibleProperty().set(false)
         BoxAtaques.visibleProperty().set(true)
     }
-    @FXML private fun ataqueSeguroEntered(){
-
+    @FXML private fun salirClicked(){
+        BoxJugar.visibleProperty().set(true)
+        BoxAtaques.visibleProperty().set(false)
     }
-    @FXML private fun ataqueSeguroExited(){
 
+    @FXML private fun psElegidoEntra() {
+        vidaActualElegido.text = miLuchador.vidaActual.toString()
     }
-    @FXML private fun ataqueMuyArriEntered(){
-
+    @FXML private fun psElegidoSale() {
+        vidaActualElegido.text = "PS"
     }
-    @FXML private fun ataqueMuyArriExited(){
-
+    @FXML private fun psRivalEntra() {
+        vidaActualRival.text = pokemonRival.vidaActual.toString()
     }
-    @FXML private fun ataqueArriEntered(){
-
+    @FXML private fun psRivalSale() {
+        vidaActualRival.text = "PS"
     }
-    @FXML private fun ataqueArriExited(){
 
+    @FXML private fun ataqueSeguroEntra() {
+        ataqueSeguro.style = ataqueSeguro.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-    @FXML private fun curarEntered(){
 
+    @FXML private fun ataqueSeguroSale() {
+        ataqueSeguro.style = ataqueSeguro.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-    @FXML private fun curarExited(){
 
+    @FXML private fun salirEntra() {
+        salir.style = salir.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-    @FXML private fun atacarEntered(){
 
+    @FXML private fun  salirSale() {
+        salir.style = salir.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-    @FXML private fun atacarExited(){
 
+    @FXML private fun ataqueMuyArriesgadoEntra() {
+        ataqueMuyArriesgado.style = ataqueMuyArriesgado.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
+    }
+
+    @FXML private fun  ataqueMuyArriesgadoSale() {
+        ataqueMuyArriesgado.style = ataqueMuyArriesgado.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
+    }
+
+    @FXML private fun  ataqueArriesgadoSale() {
+        ataqueArriesgado.style = ataqueArriesgado.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
+    }
+
+    @FXML private fun  ataqueArriesgadoEntra() {
+        ataqueArriesgado.style = ataqueArriesgado.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
+    }
+
+    @FXML private fun  atacarEntra() {
+         atacar.style = atacar.style+" -fx-underline: true;"
+    }
+
+    @FXML private fun  atacarSale() {
+        atacar.style = atacar.style+" -fx-underline: false;"
+    }
+
+    @FXML private fun  curarEntra() {
+        curar.style = curar.style+" -fx-underline: true;"
+    }
+
+    @FXML private fun  curarSale() {
+         curar.style = curar.style+" -fx-underline: false;"
     }
 }
 
