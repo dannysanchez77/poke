@@ -1,5 +1,6 @@
 package com.example.poke
 import javafx.fxml.FXML
+import javafx.scene.Scene
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import javafx.scene.control.Label
@@ -9,7 +10,6 @@ import javafx.scene.image.ImageView
 import javafx.scene.layout.BorderPane
 import javafx.stage.Stage
 import java.io.File
-import java.util.*
 import kotlin.system.exitProcess
 
 
@@ -130,12 +130,14 @@ class BatallaController {
 
     }
 
-
     fun alertaElegido(miLuchador: Pokemon) {
+
         val alert = Alert(Alert.AlertType.CONFIRMATION)
+        alert.resizableProperty()
         alert.title = "Ha muerto"
         alert.headerText = "El pokemon ${miLuchador.Nombre} ha muerto"
         alert.contentText = "Elige que hacer"
+        alert.graphic = ImageView(miLuchador.imagen.toURI().toString())
         val buttonTypeOne = ButtonType("Continuar")
         val buttonTypeTwo = ButtonType("Salir")
         alert.buttonTypes.setAll(buttonTypeOne, buttonTypeTwo)
@@ -149,12 +151,13 @@ class BatallaController {
             exitProcess(0)
         }
     }
+
     fun alertaRival(pokemonRival: Pokemon) {
         val alert = Alert(Alert.AlertType.CONFIRMATION)
         alert.title = "Ha muerto"
         alert.headerText = "El pokemon ${pokemonRival.Nombre} ha muerto"
         alert.contentText = "Elige que hacer"
-
+        alert.graphic = ImageView(pokemonRival.imagen.toURI().toString())
         val buttonTypeOne = ButtonType("Continuar")
         val buttonTypeTwo = ButtonType("Salir")
         alert.buttonTypes.setAll(buttonTypeOne, buttonTypeTwo)
