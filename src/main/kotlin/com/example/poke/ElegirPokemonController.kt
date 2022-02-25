@@ -262,9 +262,24 @@ class ElegirPokemonController {
         configurarPoke(Nombre21,Nv21,foto21,genero21,vida21,Ps21,pokemonAmigo[5])
 
     }
-    @FXML
-    fun estadisticasClick() {
 
+
+    fun estadisticasClick() {
+            try {
+                if (stage == null) {
+                    val stage = Stage()
+                    val loader = FXMLLoader(PokeApplication::class.java.getResource("estadisticas.fxml"))
+                    val scene = Scene(loader.load(), 700.0, 500.0)
+                    stage.title = "Pokemon"
+                    stage.scene = scene
+                    stage.isResizable = false
+                    stage.show()
+
+
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 
-}

@@ -14,6 +14,7 @@ import kotlin.system.exitProcess
 
 
 class BatallaController {
+
     var controlador = ElegirPokemonController()
     var posiblesPokemonRivales = ArrayList<Pokemon>()
     lateinit var pokemonRival : Pokemon
@@ -236,17 +237,21 @@ class BatallaController {
         if (pokemonRival.estaVivo(miLuchador)){
             miLuchador.ataqueMuyArriesgado(pokemonRival)
             actualizarVida()
-            controlador.actualizarDatos()}
+            controlador.actualizarDatos()
+          }
         else {
             alertaElegido(miLuchador)
+
         }
         if (miLuchador.estaVivo(pokemonRival)){
             pokemonRival.ataqueMuyArriesgado(miLuchador)
             actualizarVida()
             controlador.actualizarDatos()
+
         }
         else{
             alertaRival(pokemonRival)
+
         }
         if (!miLuchador.estaVivo(pokemonRival))
             alertaRival(pokemonRival)
@@ -262,6 +267,7 @@ class BatallaController {
     @FXML private fun curarClicked(){
         miLuchador.curar(pokemonRival)
         pokemonRival.curar(miLuchador)
+
         actualizarVida()
         psRivalSale()
         psElegidoSale()
