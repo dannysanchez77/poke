@@ -15,11 +15,15 @@ import kotlin.system.exitProcess
 
 class BatallaController {
 
-    var controlador = ElegirPokemonController()
-    var posiblesPokemonRivales = ArrayList<Pokemon>()
-    lateinit var pokemonRival : Pokemon
-    lateinit var miLuchador : Pokemon
+    var controlador = ElegirPokemonController()  // variable creada para llamar a otra pantalla
 
+    var posiblesPokemonRivales = ArrayList<Pokemon>() // creamos un array con todos los posibles rivales
+
+    lateinit var pokemonRival : Pokemon  // creamos la variable pokemon rival para asignar el rival
+
+    lateinit var miLuchador : Pokemon  // creamos esta variable para asignarla a la funcion de traer el pokemon
+
+    //CREAMOS LOS POKEMON RIVALES PARA RELLENAR EL ARRAY
     val pokemonRival1 = Pokemon(
         "Blastoise",
         70,
@@ -77,6 +81,7 @@ class BatallaController {
     @FXML private lateinit var barraElegido: ProgressBar
     @FXML private lateinit var fotoElegido: ImageView
 
+    //ATAQUES, CURAR Y BOTONOES
     @FXML private lateinit var ataqueSeguro: Label
     @FXML private lateinit var ataqueMuyArriesgado: Label
     @FXML private lateinit var ataqueArriesgado: Label
@@ -86,23 +91,25 @@ class BatallaController {
     @FXML private lateinit var BoxAtaques: BorderPane
     @FXML private lateinit var BoxJugar: BorderPane
 
-
+    // FUNCION PARA CALCULAR LA BARRA DE VIDA
     private fun calcularBarraVida(poke: Pokemon): Double{
 
         return poke.vidaActual.toDouble()/poke.vidaMaxima
     }
 
     fun initialize() {
-
+// INICIALIZAMOS LOS POKEMON RIVALES
         posiblesPokemonRivales.add(pokemonRival1)
         posiblesPokemonRivales.add(pokemonRival2)
         posiblesPokemonRivales.add(pokemonRival3)
         posiblesPokemonRivales.add(pokemonRival4)
-        BoxAtaques.visibleProperty().set(false)
 
+        // HACEMOS INVISIBLE LA CAJA DE ATAQUES
+        BoxAtaques.visibleProperty().set(false)
+// INICIAMOS LA IMAGEN DE FONDO
         fondoBatalla.image= Image(File("src\\main\\kotlin\\com\\example\\poke\\Pokemones\\fondoBatalla.png").toURI().toString())
 
-
+        //CREAMOS EL POKEMON RIVAL
         pokemonRival = posiblesPokemonRivales.random()
         nombreRival.text=pokemonRival.Nombre
         nvRival.text= "Nv "+pokemonRival.Nv
@@ -112,6 +119,7 @@ class BatallaController {
         vidaActualRival.text = "PS"
 
     }
+    //FUNCION PARA PODER TRAER EL POKEMON SELECCIONADO
     fun traerPokemon(elegirLuchador: Pokemon) {
         nombreElegido.text= elegirLuchador.Nombre
         nvElegido.text = "Nv "+elegirLuchador.Nv.toString()
@@ -119,10 +127,11 @@ class BatallaController {
         generoElegido.image = Image(elegirLuchador.genero.toURI().toString())
         vidaActualElegido.text = "PS"
         barraElegido.progress = calcularBarraVida(elegirLuchador)
+        //ASIGNAMOS LA VARIABLE PARA PODER JUGAR CON ELLA EN ESTA PANTALLA
         miLuchador= elegirLuchador
 
     }
-
+    // FUNCION CREADA PARA PODER ACTUALIZAR LA VIDA
     fun actualizarVida(){
         vidaActualElegido.text = miLuchador.vidaActual.toString()
         vidaActualRival.text = pokemonRival.vidaActual.toString()
@@ -130,7 +139,7 @@ class BatallaController {
         barraRival.progress = calcularBarraVida(pokemonRival)
 
     }
-
+    // FUNCION CREADA PARA QUE SALTE LA ALERTA SI MUERE NUESTRO POKEMON
     fun alertaElegido(miLuchador: Pokemon) {
 
         val alert = Alert(Alert.AlertType.CONFIRMATION)
@@ -152,7 +161,7 @@ class BatallaController {
             exitProcess(0)
         }
     }
-
+    // FUNCION CREADA PARA QUE SALTE LA ALERTA SI MUERE EL POKEMON RIVAL
     fun alertaRival(pokemonRival: Pokemon) {
         val alert = Alert(Alert.AlertType.CONFIRMATION)
         alert.title = "Ha muerto"
@@ -173,25 +182,26 @@ class BatallaController {
         }
     }
 
+    // FUNCIONES DE ATAQUES
     @FXML private fun ataqueSeguroClicked(){
         actualizarVida()
-        if (pokemonRival.estaVivo(miLuchador)){
-            miLuchador.ataqueSeguro(pokemonRival)
+        if (pokemonRival.estaVivo(miLuchador)){   // SI MI LUCHADOR ESTA VIVO
+            miLuchador.ataqueSeguro(pokemonRival) // MI LUCHADOR ATACA AL RIVAL
             actualizarVida()
-            controlador.actualizarDatos()
+            controlador.actualizarDatos()         // ACTUALIZAMOS DATOS EN LA PAG 1
         }
         else {
-            alertaElegido(miLuchador)
+            alertaElegido(miLuchador)             // ALERTA SI MUERE MI LUCHADOR
         }
-        if (miLuchador.estaVivo(pokemonRival)){
-            pokemonRival.ataqueSeguro(miLuchador)
+        if (miLuchador.estaVivo(pokemonRival)){   // SI EL RIVAL ESTA VIVO
+            pokemonRival.ataqueSeguro(miLuchador) // EL RIVAL ATACA A MI LUCHADOR
             actualizarVida()
-            controlador.actualizarDatos()
+            controlador.actualizarDatos()         // ACTUALIZAMOS DATOS EN LA PAG 1
         }
         else{
-            alertaRival(pokemonRival)
+            alertaRival(pokemonRival)            // ALERTA SI MUERE EL RIVAL
         }
-        if (!miLuchador.estaVivo(pokemonRival))
+        if (!miLuchador.estaVivo(pokemonRival))  //
             alertaRival(pokemonRival)
 
         if (!pokemonRival.estaVivo(miLuchador))
@@ -238,7 +248,7 @@ class BatallaController {
             miLuchador.ataqueMuyArriesgado(pokemonRival)
             actualizarVida()
             controlador.actualizarDatos()
-          }
+        }
         else {
             alertaElegido(miLuchador)
 
@@ -273,7 +283,7 @@ class BatallaController {
         psElegidoSale()
     }
 
-    @FXML private fun atacarClicked(){
+    @FXML private fun atacarClicked(){      // AL CLICKAR
         BoxJugar.visibleProperty().set(false)
         BoxAtaques.visibleProperty().set(true)
     }
