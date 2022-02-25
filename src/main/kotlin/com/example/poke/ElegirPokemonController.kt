@@ -229,7 +229,7 @@ class ElegirPokemonController {
         elegir.disableProperty().set(false)
         elegirLuchador=pokemonAmigo6
     }
-
+// AL CLICKAR EL BOTON NOS VAMOS A LA SIGUIENTE PANTALLA
     var stage: Stage? = null
     @FXML fun elegirPulsado() {
         elegir.disableProperty().set(true)
@@ -253,6 +253,7 @@ class ElegirPokemonController {
             e.printStackTrace()
         }
     }
+    // FUNCION PARA PODER ACTUALIZAR LOS DATOS OBTENIDOS DE LA BATALLA
     fun actualizarDatos() {
         configurarPoke(Nombre00,Nv00,foto00,genero00,vida00,Ps00,pokemonAmigo[0])
         configurarPoke(Nombre10,Nv10,foto10,genero10,vida10,Ps10,pokemonAmigo[1])
@@ -263,7 +264,7 @@ class ElegirPokemonController {
 
     }
 
-
+/*
     fun estadisticasClick() {
             try {
                 if (stage == null) {
@@ -280,6 +281,6 @@ class ElegirPokemonController {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-        }
-    }
+        }*/
+}
 

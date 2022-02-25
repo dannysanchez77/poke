@@ -3,13 +3,16 @@ package com.example.poke
 import java.io.File
 import kotlin.random.Random
 
+// CREAMOS LA CLASE POKEMON CON SUS DATOS NECESARIOS
 class Pokemon(var Nombre: String,
               var Nv: Int,
               var imagen: File,
               var genero: File,
               var vidaActual: Int,
               var vidaMaxima: Int,
-              var imagenEspalda: File,){
+              var imagenEspalda: File,)
+{
+    // CONFIGURAMOS LOS ATAQUES
     fun ataqueSeguro(pokemon: Pokemon){
         pokemon.vidaActual-=20
         if(pokemon.vidaActual<0){
@@ -35,7 +38,7 @@ class Pokemon(var Nombre: String,
             pokemon.vidaActual=pokemon.vidaMaxima
         }
     }
-
+    // COMPROBAMOS SI EL POKEMON ESTA VIVO
     fun estaVivo(pokemon: Pokemon):Boolean{
 
         if (pokemon.vidaActual>200){

@@ -1,6 +1,6 @@
 package com.example.poke
 import javafx.fxml.FXML
-import javafx.scene.Scene
+
 import javafx.scene.control.Alert
 import javafx.scene.control.ButtonType
 import javafx.scene.control.Label
@@ -96,7 +96,10 @@ class BatallaController {
 
         return poke.vidaActual.toDouble()/poke.vidaMaxima
     }
-
+    // FUNCION PARA QUE ACTUALICE LOS DATOS EN LA PRIMERA PAGINA
+    fun enviarDatos( controlador: ElegirPokemonController){
+        this.controlador=controlador
+    }
     fun initialize() {
 // INICIALIZAMOS LOS POKEMON RIVALES
         posiblesPokemonRivales.add(pokemonRival1)
@@ -283,82 +286,65 @@ class BatallaController {
         psElegidoSale()
     }
 
-    @FXML private fun atacarClicked(){      // AL CLICKAR
+    @FXML private fun atacarClicked(){      // AL CLICKAR OCULTA LA CAJA DE JUGAR Y MUESTRA ATAQUES
         BoxJugar.visibleProperty().set(false)
         BoxAtaques.visibleProperty().set(true)
     }
-    @FXML private fun salirClicked(){
+    @FXML private fun salirClicked(){      // AL CLICKAR OCULTA ATAQUES Y MUESTRA LA CAJA DE JUGAR
         BoxJugar.visibleProperty().set(true)
         BoxAtaques.visibleProperty().set(false)
     }
-
+    // AL ENTRAR Y SALIR EL RATON MUESTRA LA VIDA ACTUAL DEL POKEMON
     @FXML private fun psElegidoEntra() {
         vidaActualElegido.text = miLuchador.vidaActual.toString()
     }
     @FXML private fun psElegidoSale() {
         vidaActualElegido.text = "PS"
     }
+    // AL ENTRAR Y SALIR EL RATON MUESTRA LA VIDA ACTUAL DEL RIVAL
     @FXML private fun psRivalEntra() {
         vidaActualRival.text = pokemonRival.vidaActual.toString()
     }
     @FXML private fun psRivalSale() {
         vidaActualRival.text = "PS"
     }
-
+    // LE DA UN FEEDBACK AL USUARIO DE QUE HA ENTRADO EN EL BOTON
     @FXML private fun ataqueSeguroEntra() {
         ataqueSeguro.style = ataqueSeguro.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-
     @FXML private fun ataqueSeguroSale() {
         ataqueSeguro.style = ataqueSeguro.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-
     @FXML private fun salirEntra() {
         salir.style = salir.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-
     @FXML private fun  salirSale() {
         salir.style = salir.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-
     @FXML private fun ataqueMuyArriesgadoEntra() {
         ataqueMuyArriesgado.style = ataqueMuyArriesgado.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-
     @FXML private fun  ataqueMuyArriesgadoSale() {
         ataqueMuyArriesgado.style = ataqueMuyArriesgado.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-
     @FXML private fun  ataqueArriesgadoSale() {
         ataqueArriesgado.style = ataqueArriesgado.style+" -fx-underline: false;-fx-padding: 0 0 0 0;"
     }
-
     @FXML private fun  ataqueArriesgadoEntra() {
         ataqueArriesgado.style = ataqueArriesgado.style+" -fx-underline: true;-fx-padding: 0 0 -1 0;"
     }
-
     @FXML private fun  atacarEntra() {
         atacar.style = atacar.style+" -fx-underline: true;"
     }
-
     @FXML private fun  atacarSale() {
         atacar.style = atacar.style+" -fx-underline: false;"
     }
-
     @FXML private fun  curarEntra() {
         curar.style = curar.style+" -fx-underline: true;"
     }
-
     @FXML private fun  curarSale() {
         curar.style = curar.style+" -fx-underline: false;"
     }
-
-    fun enviarDatos( controlador: ElegirPokemonController){
-        this.controlador=controlador
-    }
-
-
-
 }
 
 
