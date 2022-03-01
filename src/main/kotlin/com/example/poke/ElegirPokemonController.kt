@@ -264,7 +264,7 @@ class ElegirPokemonController {
 
     }
 
-/*
+
     fun estadisticasClick() {
             try {
                 if (stage == null) {
@@ -281,6 +281,6 @@ class ElegirPokemonController {
             } catch (e: IOException) {
                 e.printStackTrace()
             }
-        }*/
+        }
 }
 
